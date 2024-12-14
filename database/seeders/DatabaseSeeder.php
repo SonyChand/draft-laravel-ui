@@ -40,6 +40,13 @@ class DatabaseSeeder extends Seeder
 
         $user = User::create([
             'name' => 'Lord Daud',
+            'email' => 'sonychandmaulana@gmail.com',
+            'password' => bcrypt('12344321'),
+            'email_verified_at' => now(),
+        ]);
+
+        $user2 = User::create([
+            'name' => 'Admin',
             'email' => 'admin@gmail.com',
             'password' => bcrypt('12344321'),
             'email_verified_at' => now(),
@@ -52,6 +59,7 @@ class DatabaseSeeder extends Seeder
         $role->syncPermissions($permissions);
 
         $user->assignRole([$role->id]);
+        $user2->assignRole([$role->id]);
 
         WebSetting::create([
             'web_default_user_role' => 1
@@ -59,12 +67,18 @@ class DatabaseSeeder extends Seeder
 
         for ($i = 0; $i <= 100; $i++) {
             $faker = Faker::create();
-            Role::create([
+            $anotherRole = Role::create([
                 'name' => $faker->name,
-                'guard_name' => 'web',
             ]);
-        }
 
-        User::factory()->count(20000)->create();
+            $anotherUser = User::create([
+                'name' => $faker->name,
+                'email' => $faker->unique()->email,
+                'password' => bcrypt('12344321'),
+                'email_verified_at' => now(),
+            ]);
+
+            $anotherUser->assignRole([$anotherRole->id]);
+        }
     }
 }

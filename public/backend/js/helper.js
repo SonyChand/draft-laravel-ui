@@ -6,13 +6,7 @@ toastr.options = {
     "preventDuplicates": true
 }
 
-let Toast = Swal.mixin({
-    toast: true,
-    position: 'top-end',
-    showConfirmButton: false,
-    timer: 3000
-})
-
+console.log(toastr);
 const toastSuccess = (message) => {
     toastr.success(message);
 }
@@ -30,24 +24,12 @@ const toastError = (message) => {
     toastr.error(errorText);
 }
 
-const startLoading = (str = 'Tunggu Sebentar...') => {
-    document.getElementById('loadingOverlay').style.display = 'block'; // Show overlay
-    Swal.fire({
-        title: 'Loading!',
-        text: str,
-        allowOutsideClick: false,
-        didOpen: () => {
-            Swal.showLoading()
-        },
-        willClose: () => {
-            document.getElementById('loadingOverlay').style.display = 'none'; // Hide overlay when closing
-        },
-    })
+const startLoading = () => {
+    document.getElementById('loading-screen').style.display = 'block';
 }
 
 const stopLoading = () => {
-    Swal.close(); // Close SweetAlert
-    document.getElementById('loadingOverlay').style.display = 'none'; // Hide overlay
+    document.getElementById('loading-screen').style.display = 'none'; // Hide overlay
 }
 
 const reloadTable = () => {

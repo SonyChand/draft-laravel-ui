@@ -63,8 +63,8 @@
             <h5 class="setting-panel-item-title">Vertical Navbar Appearance</h5>
             <div class="row gx-2">
                 <div class="col-6">
-                    <input class="btn-check" id="navbar-style-default" type="radio" name="config.name"
-                        value="default" data-theme-control="phoenixNavbarVerticalStyle" />
+                    <input class="btn-check" id="navbar-style-default" type="radio" name="config.name" value="default"
+                        data-theme-control="phoenixNavbarVerticalStyle" />
                     <label class="btn d-block w-100 btn-navbar-style fs-9" for="navbar-style-default"> <img
                             class="img-fluid img-prototype d-dark-none"
                             src="{{ asset('backend') }}/assets/img/generic/default-light.png" alt="" /><img
@@ -74,8 +74,8 @@
                             class="label-text d-light-none">Default</span></label>
                 </div>
                 <div class="col-6">
-                    <input class="btn-check" id="navbar-style-dark" type="radio" name="config.name"
-                        value="darker" data-theme-control="phoenixNavbarVerticalStyle" />
+                    <input class="btn-check" id="navbar-style-dark" type="radio" name="config.name" value="darker"
+                        data-theme-control="phoenixNavbarVerticalStyle" />
                     <label class="btn d-block w-100 btn-navbar-style fs-9" for="navbar-style-dark"> <img
                             class="img-fluid img-prototype d-dark-none"
                             src="{{ asset('backend') }}/assets/img/generic/vertical-darker.png" alt="" /><img
@@ -150,10 +150,7 @@
 <script src="https://cdn.datatables.net/2.1.8/js/dataTables.js"></script>
 <script src="https://cdn.datatables.net/2.1.8/js/dataTables.bootstrap5.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<script src={{ asset('backend/js/helper.js') }}></script>
 
-@stack('footer')
-@stack('chart')
 <script>
     toastr.options = {
         "closeButton": true,
@@ -185,6 +182,12 @@
         toastr.error("{{ session('error') }}");
     @endif
 </script>
+
+{{-- <script src={{ asset('backend/js/helper.js') }}></script> --}}
+
+@stack('footer')
+@stack('chart')
+
 
 </body>
 

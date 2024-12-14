@@ -24,6 +24,7 @@ class UserService
                         ->with('role:id,name')
                         ->skip($start)
                         ->take($limit)
+                        ->where('id', '>', 2)
                         ->get(['id', 'name', 'email']);
                 } else {
                     $data = User::filter($request->search['value'])
@@ -31,6 +32,7 @@ class UserService
                         ->with('role:id,name')
                         ->skip($start)
                         ->take($limit)
+                        ->where('id', '>', 2)
                         ->get(['id', 'name', 'email']);
 
                     $totalFiltered = $data->count();
@@ -89,39 +91,6 @@ class UserService
     public function getFirstBy(string $column, string $value, bool $relation = false)
     {
         return User::where($column, $value)->firstOrFail();
-    }
-
-    public function create(array $data)
-    {
-        $user = User::create($data);
-        $user->assignRole($data['roles']);
-
-        return $user;
-    }
-
-    public function update(array $data, string $id)
-    {
-        $user = User::where('id', $id)->firstOrFail();
-        $user->update($data);
-        $user->assignRole($data['roles']);
-
-        return $user;
-    }
-
-    public function delete(string $id)
-    {
-        $getUser = $this->getFirstBy('id', $id);
-        $getUser->delete(); // soft delete
-
-        return $getUser;
-    }
-
-    public function restore(string $id)
-    {
-        $getUser = $this->getFirstBy('id', $id);
-        $getUser->restore();
-
-        return $getUser;
     }
 
     public function forceDelete(string $id)
